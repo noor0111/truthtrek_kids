@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "150664309345",
+    "project_id": "truthtrek-kids",
+    "storage_bucket": "truthtrek-kids.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150664309345:android:6db7d5f303119a134b5820",
+        "android_client_info": {
+          "package_name": "com.truthtrek.kids"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbKbLwHxy4L085tr68HSsec_1A7fehUSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150664309345:android:298d543fa6bcc7a74b5820",
+        "android_client_info": {
+          "package_name": "com.truthtrek.truthtrek_kids"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbKbLwHxy4L085tr68HSsec_1A7fehUSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
