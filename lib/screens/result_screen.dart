@@ -1,37 +1,28 @@
-// result_screen.dart
-// This screen shows the result after all 3 agents finish.
-// It shows the verdict, explanation, points earned, and parent alert.
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/claim_result.dart';
 import '../widgets/truth_meter.dart';
 
 class ResultScreen extends StatelessWidget {
-  // The result passed from the home screen
   final ClaimResult result;
-
   const ResultScreen({super.key, required this.result});
 
-  // Returns background color based on verdict
   Color get cardColor {
     if (result.verdict == Verdict.tru) {
-      return const Color(0xFF1A7A4A); // dark green
+      return const Color(0xFF1A4A2E); // dark green
     } else if (result.verdict == Verdict.misleading) {
-      return const Color(0xFF8B1A1A); // dark red
+      return const Color(0xFF8B2500); // dark red-brown
     } else {
-      return const Color(0xFF7A5A00); // dark yellow
+      return const Color(0xFF5C3A1E); // warm brown
     }
   }
 
-  // Returns the big emoji for the verdict
   String get verdictEmoji {
     if (result.verdict == Verdict.tru) return '✅';
     if (result.verdict == Verdict.misleading) return '⚠️';
     return '🔍';
   }
 
-  // Returns the verdict label text
   String get verdictLabel {
     if (result.verdict == Verdict.tru) return 'TRUE';
     if (result.verdict == Verdict.misleading) return 'MISLEADING';
@@ -46,7 +37,7 @@ class ResultScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [cardColor, const Color(0xFF1A1A2E)],
+            colors: [cardColor, const Color(0xFF2C1A0E)],
           ),
         ),
         child: SafeArea(
@@ -55,7 +46,8 @@ class ResultScreen extends StatelessWidget {
               buildTopBar(context),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     children: [
                       const SizedBox(height: 16),
@@ -64,8 +56,8 @@ class ResultScreen extends StatelessWidget {
                       buildExplanationCard(),
                       const SizedBox(height: 20),
                       buildPointsCard(),
-                      // Only show parent alert if flagged
-                      if (result.safetyFlag == SafetyFlag.flagForParent) ...[
+                      if (result.safetyFlag ==
+                          SafetyFlag.flagForParent) ...[
                         const SizedBox(height: 20),
                         buildParentAlert(),
                       ],
@@ -85,7 +77,6 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  // Back arrow and title
   Widget buildTopBar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 16, 0),
@@ -93,22 +84,19 @@ class ResultScreen extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+            icon: const Icon(Icons.arrow_back_ios,
+                color: Colors.white),
           ),
-          Text(
-            'Your Result',
-            style: GoogleFonts.nunito(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
+          Text('Your Result',
+              style: GoogleFonts.nunito(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white)),
         ],
       ),
     );
   }
 
-  // Big verdict card with emoji and truth meter
   Widget buildVerdictCard() {
     return Container(
       width: double.infinity,
@@ -120,17 +108,15 @@ class ResultScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(verdictEmoji, style: const TextStyle(fontSize: 70)),
+          Text(verdictEmoji,
+              style: const TextStyle(fontSize: 70)),
           const SizedBox(height: 14),
-          Text(
-            verdictLabel,
-            style: GoogleFonts.nunito(
-              fontSize: 32,
-              fontWeight: FontWeight.w900,
-              color: Colors.white,
-              letterSpacing: 2,
-            ),
-          ),
+          Text(verdictLabel,
+              style: GoogleFonts.nunito(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  letterSpacing: 2)),
           const SizedBox(height: 20),
           TruthMeter(verdict: result.verdict),
         ],
@@ -138,7 +124,6 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  // Card showing Trek's explanation
   Widget buildExplanationCard() {
     return Container(
       width: double.infinity,
@@ -152,64 +137,53 @@ class ResultScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('🤖', style: TextStyle(fontSize: 22)),
+              const Text('🤖',
+                  style: TextStyle(fontSize: 22)),
               const SizedBox(width: 8),
-              Text(
-                'Trek says:',
-                style: GoogleFonts.nunito(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xFF6C3AE8),
-                ),
-              ),
+              Text('Trek says:',
+                  style: GoogleFonts.nunito(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF6B4226))),
             ],
           ),
           const SizedBox(height: 12),
-          Text(
-            result.kidExplanation,
-            style: GoogleFonts.nunito(
-              fontSize: 15,
-              color: const Color(0xFF2D2D2D),
-              height: 1.7,
-            ),
-          ),
+          Text(result.kidExplanation,
+              style: GoogleFonts.nunito(
+                  fontSize: 15,
+                  color: const Color(0xFF2D2D2D),
+                  height: 1.7)),
         ],
       ),
     );
   }
 
-  // Yellow card showing points earned
   Widget buildPointsCard() {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFD600),
+        color: const Color(0xFFD4A017), // gold
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('⭐', style: TextStyle(fontSize: 34)),
+          const Text('⭐',
+              style: TextStyle(fontSize: 34)),
           const SizedBox(width: 14),
           Column(
             children: [
-              Text(
-                '+${result.pointsAwarded} Points!',
-                style: GoogleFonts.nunito(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w900,
-                  color: const Color(0xFF3A1A8A),
-                ),
-              ),
-              Text(
-                'Truth Explorer Points Earned!',
-                style: GoogleFonts.nunito(
-                  fontSize: 13,
-                  color: const Color(0xFF3A1A8A),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              Text('+${result.pointsAwarded} Points!',
+                  style: GoogleFonts.nunito(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: const Color(0xFF2C1A0E))),
+              Text('Truth Explorer Points Earned!',
+                  style: GoogleFonts.nunito(
+                      fontSize: 13,
+                      color: const Color(0xFF2C1A0E),
+                      fontWeight: FontWeight.w600)),
             ],
           ),
         ],
@@ -217,7 +191,6 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  // Red alert box shown only when safety agent flagged the content
   Widget buildParentAlert() {
     return Container(
       width: double.infinity,
@@ -232,45 +205,37 @@ class ResultScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('🚨', style: TextStyle(fontSize: 26)),
+              const Text('🚨',
+                  style: TextStyle(fontSize: 26)),
               const SizedBox(width: 8),
-              Text(
-                'Parent Alert!',
-                style: GoogleFonts.nunito(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.red,
-                ),
-              ),
+              Text('Parent Alert!',
+                  style: GoogleFonts.nunito(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.red)),
             ],
           ),
           const SizedBox(height: 10),
           Text(
-            'This content has been flagged. '
-            'Please show this screen to a trusted adult before doing anything!',
-            style: GoogleFonts.nunito(
-              fontSize: 14,
-              color: Colors.red,
-              height: 1.5,
-            ),
-          ),
+              'This content has been flagged. '
+              'Please show this screen to a trusted adult before doing anything!',
+              style: GoogleFonts.nunito(
+                  fontSize: 14,
+                  color: Colors.red,
+                  height: 1.5)),
           if (result.safetyReason.isNotEmpty) ...[
             const SizedBox(height: 6),
-            Text(
-              'Reason: ${result.safetyReason}',
-              style: GoogleFonts.nunito(
-                fontSize: 13,
-                color: Colors.redAccent,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
+            Text('Reason: ${result.safetyReason}',
+                style: GoogleFonts.nunito(
+                    fontSize: 13,
+                    color: Colors.redAccent,
+                    fontStyle: FontStyle.italic)),
           ],
         ],
       ),
     );
   }
 
-  // Shows the original claim the child typed
   Widget buildOriginalClaim() {
     return Container(
       width: double.infinity,
@@ -283,28 +248,20 @@ class ResultScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'You submitted:',
-            style: GoogleFonts.nunito(
-              fontSize: 11,
-              color: Colors.white60,
-            ),
-          ),
+          Text('You submitted:',
+              style: GoogleFonts.nunito(
+                  fontSize: 11, color: Colors.white60)),
           const SizedBox(height: 4),
-          Text(
-            '"${result.originalClaim}"',
-            style: GoogleFonts.nunito(
-              fontSize: 13,
-              color: Colors.white,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
+          Text('"${result.originalClaim}"',
+              style: GoogleFonts.nunito(
+                  fontSize: 13,
+                  color: Colors.white,
+                  fontStyle: FontStyle.italic)),
         ],
       ),
     );
   }
 
-  // Back button at the bottom
   Widget buildBackButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -312,19 +269,14 @@ class ResultScreen extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () => Navigator.pop(context),
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFFFFD600),
-          foregroundColor: const Color(0xFF3A1A8A),
+          backgroundColor: const Color(0xFFD4A017), // gold
+          foregroundColor: const Color(0xFF2C1A0E), // dark brown
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
+              borderRadius: BorderRadius.circular(16)),
         ),
-        child: Text(
-          'Check Another Claim! 🔍',
-          style: GoogleFonts.nunito(
-            fontSize: 17,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
+        child: Text('Check Another Claim! 🔍',
+            style: GoogleFonts.nunito(
+                fontSize: 17, fontWeight: FontWeight.w800)),
       ),
     );
   }
