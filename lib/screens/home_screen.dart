@@ -206,14 +206,14 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         const Text('🕵️', style: TextStyle(fontSize: 70)),
         const SizedBox(height: 14),
-        Text('Is It TRUE or FALSE?',
+        Text('Fact Check Like a Pro!',
             style: GoogleFonts.nunito(
                 fontSize: 26,
                 fontWeight: FontWeight.w800,
-                color: Colors.white),
+                color: const Color.fromARGB(255, 44, 22, 22)),
             textAlign: TextAlign.center),
         const SizedBox(height: 8),
-        Text('Type any claim, WhatsApp message,\nor thing you read online!',
+        Text('Paste any claim, forward, or news\nyou are not sure about',
             style: GoogleFonts.nunito(
                 fontSize: 15, color: Colors.white70, height: 1.5),
             textAlign: TextAlign.center),
@@ -345,11 +345,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildSampleClaims() {
     final List<String> samples = [
-      '🌿 Eating neem leaves cures all diseases',
-      '🏏 Pakistan won the 1992 Cricket World Cup',
-      '🎁 A stranger online wants to give me a prize',
-      '🏫 School is cancelled tomorrow (WhatsApp forward)',
-    ];
+  'Karachi tap water causes cancer (WhatsApp forward)',
+  'Pakistan has won the most Cricket World Cups',
+  'Someone on PUBG is offering me free diamonds',
+  'SZABIST has announced holiday tomorrow',
+];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
